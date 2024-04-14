@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "python-video-converter"
+version = "0.1.0"
+description = ""
+authors = ["Veysel Aksin <32255510+veyselaksin@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.3"
+pylint = "^3.1.0"
+jedi = "^0.19.1"
+pyjwt = "^2.8.0"
+mysqlclient = "2.2.4"
+flask-mysqldb = "^2.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
