@@ -10,4 +10,7 @@ def login(request):
     if user.status_code != 200:
         return {"message": "User not found"}, 401
     
+    print("SELAM")
+    print("USER: ", user.json())
+    
     return user.json(), 200
