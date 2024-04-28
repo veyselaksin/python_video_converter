@@ -5,6 +5,6 @@ metadata:
 data:
   JWT_SECRET: iD@ur@BQKZ#r0EjhAw!yt_3dluCsVywf#*M%z_Xmtf5PNoQR9@akvHSvi6b&Wd@$
   MYSQL_USER: root
-  MYSQL_HOST: host.minikube.internal
+  MYSQL_HOST: localhost
   MYSQL_DATABASE: auth_db
   MYSQL_PORT: "3306"
