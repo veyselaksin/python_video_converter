@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gateway-ingress
+  name: rabbitmq-ingress
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
@@ -9,13 +9,13 @@ metadata:
     #nginx.ingress.kubernetes.io/proxy-max-temp-file-size: "1024m"
 spec:
   rules:
-    - host: mp3converter.com
+    - host: rabbitmq-manager.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: gateway
+                name: rabbitmq
                 port:
-                  number: 8080
+                  number: 15672

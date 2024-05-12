@@ -10,9 +10,7 @@ ENV PATH="${PATH}:/root/.local/bin"
 COPY . /app
 WORKDIR /app
 
-EXPOSE 8000
-
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
-CMD ["python", "server.py"]
+CMD ["python", "consumer.py"]
