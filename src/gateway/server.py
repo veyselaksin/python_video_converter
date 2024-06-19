@@ -10,9 +10,13 @@ app = Flask(__name__)
 
 app.config['MONGO_URI'] = os.environ['MONGO_URI']
 
-mongo = PyMongo(app)
+mongo_video = PyMongo(app, uri="mongodb://host.minikube.internal:27017/videos")
 
-fs = gridfs.GridFS(mongo.db)
+mongo_mp3 = PyMongo(app, uri="mongodb://host.minikube.internal:27017/mp3s")
+
+fs_videos = gridfs.GridFS(mongo_video.db)
+fs_mp3s = gridfs.GridFS(mongo_mp3.db)
+
 
 connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
 channel = connection.channel()
@@ -37,7 +41,7 @@ def upload():
             return {"message": "File is missing"}, 400
     
     for file in request.files.getlist("file"):
-        err = util.upload(fs, file, channel, access)
+        err = util.upload(fs_videos, file, channel, access)
 
         if err:
             return err
@@ -61,7 +65,7 @@ def download():
     if not file_id:
         return {"message": "File ID is missing"}, 400
 
-    file, err = util.download(fs, file_id, access)
+    file, err = util.download(fs_videos, file_id, access)
 
     if err:
         return err
